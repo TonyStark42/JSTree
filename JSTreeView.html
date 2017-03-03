@@ -1,0 +1,48 @@
+<html>
+	<header>
+	</header>
+	<body>
+		<ul id="parent"></ul>
+
+		<script>
+
+			//Json object
+			var jsonObj = {"a":"b",
+					"c":[
+						{"d0":1,"f":"2000-01-01","g":"2099-12-31"},
+						{"d1":2,"f":"2000-01-01","g":"2099-12-31"},
+						{"d2":3,"f":"2000-01-01","g":"2099-12-31"},
+						{"d3":1,"f":"2000-01-01","g":"2099-12-31"},
+						{"d4":1,"f":"2000-01-01","g":"2099-12-31"},
+						{"d5":3,"f":"2000-01-01","g":"2099-12-31"},
+						{"d6":3,"f":"2000-01-01","g":"2099-12-31"}
+					]}
+
+			function traverse(obj) {
+				var html = "";
+				html += "<ul>";
+				for (var i in obj) {
+					html +="<li>";
+					if (obj[i] !== null && typeof(obj[i])=="object") {
+						html += (i + " : ");
+						html +=  traverse(obj[i]);
+					}
+					else
+					{
+						html += (i + " : "+obj[i]);
+					}
+					html +="</li>";
+				}
+				html += "</ul>";
+				return html
+			}
+
+
+			var htmlData = traverse(jsonObj);
+			document.getElementById("parent").innerHTML = htmlData;
+		  
+
+		</script>
+
+	</body>
+</html>
